@@ -1,11 +1,9 @@
 import com.edvardas.amf3.AmfInteger
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import kotlin.math.roundToInt
-import kotlin.random.Random
 
 @RunWith(Parameterized::class)
 class AmfIntegerTesting(private val value: Int) {
@@ -17,7 +15,7 @@ class AmfIntegerTesting(private val value: Int) {
                 arrayOf(Math.PI.roundToInt()),
                 arrayOf(1234),
                 arrayOf((Math.random() * Int.MAX_VALUE).roundToInt()),
-                arrayOf(Random(Int.MAX_VALUE).nextInt())
+                arrayOf(4715)
             )
         }
     }
@@ -41,5 +39,17 @@ class AmfIntegerTesting(private val value: Int) {
     @Test
     fun `testing amf int string value`() {
         assertEquals(AmfInteger(value).toString(), "Int[$value]")
+    }
+
+    @Test
+    fun `testing amf unsigned value`() {
+        assertEquals(AmfInteger(value).unsignedValue, value.toLong())
+    }
+
+    @Test
+    fun `testing setting unsigned value`() {
+        val amf = AmfInteger()
+        amf.setUnsignedValue(value.toLong())
+        assertTrue(amf.value == value)
     }
 }
