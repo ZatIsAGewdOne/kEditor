@@ -1,3 +1,4 @@
+import com.edvardas.amf3.AmfType
 import com.edvardas.amf3.SimpleTrait
 import com.edvardas.amf3.Trait
 import com.edvardas.amf3.UnexpectedDataException
@@ -22,5 +23,10 @@ class AmfTesting {
         assertNotNull(trait)
         assertEquals(trait.name, "Test trait")
         assertEquals(trait.properties.size, 4)
+    }
+
+    @Test
+    fun `testing getting amf type`() {
+        assertEquals(AmfType[10], AmfType.Object)
     }
 }
