@@ -1,7 +1,4 @@
-import com.edvardas.amf3.AmfType
-import com.edvardas.amf3.SimpleTrait
-import com.edvardas.amf3.Trait
-import com.edvardas.amf3.UnexpectedDataException
+import com.edvardas.amf3.*
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -27,6 +24,19 @@ class AmfTesting {
 
     @Test
     fun `testing getting amf type`() {
-        assertEquals(AmfType[10], AmfType.Object)
+        assertNull(AmfType[256])
+    }
+
+    @Test
+    fun `testing default AmfDouble`() {
+        val d = AmfDouble()
+        assertEquals(d.value, 0.0)
+        assertNotNull(d.value)
+    }
+
+    @Test(expected = UnsupportedOperationException::class)
+    fun `testing primitive value being null`() {
+        val d = AmfDouble()
+        d.value = null
     }
 }
