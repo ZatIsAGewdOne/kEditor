@@ -39,4 +39,14 @@ class AmfTesting {
         val d = AmfDouble()
         d.value = null
     }
+
+    @Test
+    fun `testing default amf integer`() {
+        assertEquals(AmfInteger().value, 0)
+    }
+
+    @Test(expected = UnsupportedOperationException::class)
+    fun `testing amf int primitive being null`() {
+        AmfInteger().value = null
+    }
 }
