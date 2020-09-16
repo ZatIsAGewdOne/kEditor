@@ -99,4 +99,33 @@ class AmfTesting {
         assertEquals(date.toString(), "Date[1998-11-30T14:12:04.900Z]")
         assertEquals(date.type, AmfType.Date)
     }
+
+    @Test
+    fun `testing amf string`() {
+        val str = AmfString()
+        val another = AmfString("Hello World")
+        assertFalse(str.equals(another))
+        assertNotNull(str.value)
+        assertEquals(another.toString(), "String[Hello World]")
+        assertFalse(another.equals(25))
+        assertEquals(str.type, AmfType.String)
+    }
+
+    @Test
+    fun `testing amf xml`() {
+        val xml = AmfXml()
+        val another = AmfXml()
+        xml.value = "Hello World"
+        assertEquals(xml.equals(another), false)
+        assertEquals(xml.toString(), "XML[Hello World]")
+        assertTrue(!xml.isXmlDocument)
+    }
+
+    @Test
+    fun `testing amf xml as xmldoc`() {
+        val xml = AmfXml(true)
+        xml.value = "This is an xml doc"
+        assertTrue(xml.isXmlDocument)
+        assertEquals(xml.toString(), "XMLDoc[This is an xml doc]")
+    }
 }
