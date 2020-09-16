@@ -1,6 +1,6 @@
 package com.edvardas.amf3
 
-class AmfDouble(value: Double = 0.0) : AmfPrimitive<Double>(value) {
+open class AmfDouble(value: Double = 0.0) : AmfPrimitive<Double>(value) {
     override val type: AmfType
         get() = AmfType.Double
 

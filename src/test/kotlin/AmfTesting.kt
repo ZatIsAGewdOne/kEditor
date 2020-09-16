@@ -1,6 +1,9 @@
 import com.edvardas.amf3.*
 import org.junit.Assert.*
 import org.junit.Test
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
 
 class AmfTesting {
 
@@ -80,5 +83,20 @@ class AmfTesting {
         assertTrue(`null`.type == AmfType.Null)
         assertTrue(`null` == another)
         assertEquals(`null`.toString(), "Null[]")
+    }
+
+    @Test
+    fun `testing amf boolean`() {
+        val bool = AmfBoolean()
+        assertTrue(bool.value == false)
+        assertEquals(bool.type, AmfType.False)
+        assertEquals(bool.toString(), "Boolean[False]")
+    }
+
+    @Test
+    fun `testing amf date`() {
+        val date = AmfDate(912435124900.0)
+        assertEquals(date.toString(), "Date[1998-11-30T14:12:04.900Z]")
+        assertEquals(date.type, AmfType.Date)
     }
 }
