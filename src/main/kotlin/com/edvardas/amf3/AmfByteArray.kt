@@ -1,5 +1,9 @@
 package com.edvardas.amf3
 
+/**
+ * This class handles byte buffer objects associated in the AMF.
+ * Makes use of [ArrayDeque]. This class functions as a basic byte stack
+ */
 class AmfByteArray : AmfValue {
     private var data = ByteArray(8)
     var size = 0

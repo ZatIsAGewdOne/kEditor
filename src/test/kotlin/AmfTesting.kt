@@ -125,45 +125,4 @@ class AmfTesting {
         assertTrue(xml.isXmlDocument)
         assertEquals(xml.toString(), "XMLDoc[This is an xml doc]")
     }
-
-    @Test
-    fun `testing adding to array`() {
-        val arr = AmfArray()
-        val str = AmfString()
-        arr.add(str)
-        assertEquals(arr.denseSize, 1)
-        arr.clear()
-        assertEquals(arr.denseSize, 0)
-    }
-
-    @Test
-    fun `testing more amf array`() {
-        val arr = AmfArray()
-        val int = AmfInteger(2)
-        val d = AmfDouble(3.14)
-        arr.add(int)
-        arr.add(d)
-        arr["integer"] = int
-        arr["double"] = d
-        assertEquals(arr.size, 4)
-        assertEquals(arr.associativeSize, 2)
-        val keys = arr.keys
-        assertTrue(keys.contains("integer"))
-        assertEquals(arr.toString(), "Array{integer=Int[2],double=Double[3.14],Int[2],Double[3.14]}")
-        assertEquals(arr[1], AmfDouble(3.14))
-        assertEquals(arr["integer"], AmfInteger(2))
-        assertFalse(arr.equals(AmfArray()))
-    }
-
-    @Test(expected = IndexOutOfBoundsException::class)
-    fun `testing remove elements`() {
-        val str = AmfString("Hello World")
-        val arr = AmfArray()
-        arr.add(str)
-        arr["string"] = str
-        arr.remove(0)
-        arr.remove("string")
-        assertEquals(arr.size, 0)
-        arr.remove(5)
-    }
 }
